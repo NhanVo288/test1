@@ -42,14 +42,17 @@ export default function GreenSlideOverlay({ onDone }) {
         duration: 1.15,
         ease: [0.65, 0, 0.35, 1],
         onComplete: () => {
-          setHideBg(true);
-          setStep(4);
+          setTimeout(() => { // Giữ overlay thêm 350ms sau animation
+            setHideBg(true);
+            setStep(4);
+          }, 350);
         },
       });
       return () => controls.stop();
     }
     return undefined;
   }, [step, slideProgress]);
+  
 
   useEffect(() => {
     if (step === 4 && onDone) onDone();
@@ -73,28 +76,31 @@ export default function GreenSlideOverlay({ onDone }) {
       }}
     >
       {!hideBg && (
-        <m.div
-          initial={{ y: "100%", x: "0%" }}
-          animate={
-            step === 3
-              ? { x: "-100%", y: "0%" }
-              : { y: step > 0 ? "0%" : "100%", x: "0%" }
-          }
-          transition={{
-            duration: 1.5,
-            ease: [0.65, 0, 0.35, 1],
-          }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "linear-gradient(135deg, #3e9949 0%, #184C35 100%)",
-            pointerEvents: "none",
-            zIndex: 0,
-          }}
-        />
+       <m.div
+       initial={{ y: "100%", x: "0%" }}
+        animate={
+          step === 3
+            ? { x: "-100%", y: "0%" }
+            : { y: step > 0 ? "0%" : "100%", x: "0%" }
+        }
+       transition={{
+         duration: 1.4,
+         ease: [0.65, 0, 0.35, 1],
+       }}
+       style={{
+         position: "absolute",
+         top: 0,
+         left: 0,
+         width: "100%",
+         height: "100%",
+         background: "linear-gradient(135deg, #3e9949 0%, #184C35 100%)",
+         pointerEvents: "none",
+         zIndex: 0,
+         willChange: "transform",
+       }}
+     />
+     
+      
       )}
 
       {/* Chữ */}
