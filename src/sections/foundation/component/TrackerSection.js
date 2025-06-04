@@ -1,4 +1,5 @@
 import { Box, Typography, Grid } from '@mui/material';
+import CountUpNumber from 'src/sections/CountUpNumber';
 
 export default function TrackSection() {
   return (
@@ -65,7 +66,7 @@ export default function TrackSection() {
                 display: 'inline-block',
               }}
             >
-              0
+              <CountUpNumber value={100}  duration={1500}/>
             </Typography>
             <Typography
               component="span"
@@ -108,7 +109,7 @@ export default function TrackSection() {
                 display: 'inline-block',
               }}
             >
-              0
+              <CountUpNumber value={12} duration={1500} />
             </Typography>
             <Typography
               component="span"

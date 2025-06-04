@@ -24,41 +24,42 @@ const cardData = [
   },
 ];
 
-const CARD_WIDTH = 420;
-const MARGIN_COLLAPSED = -18;
-const MARGIN_EXPANDED = -1;
+// Responsive values
+const CARD_WIDTH = { xs: "100%", sm: 340, md: 400, lg: 420 };
+const MARGIN_COLLAPSED = { xs: -12, sm: -15, md: -18 };   // card chồng lên nhau trên từng cỡ màn
+const MARGIN_EXPANDED = { xs: -2, sm: -4, md: -1 };
 
 export default function KeyFactorSection() {
   const [hoveredIdx, setHoveredIdx] = useState(null);
 
   return (
     <Box sx={{ width: "100%" }}>
-      {/* PHẦN GRID NHƯ CŨ */}
       <Grid
         container
         spacing={0}
         sx={{
-          minHeight: "70vh",
+          minHeight: { xs: "unset", md: "70vh" },
           width: "100%",
           justifyContent: "space-between",
           alignItems: "flex-start",
-          px: { xs: 2, md: 8 },
+          px: { xs: 1, sm: 2, md: 8 },
           py: { xs: 3, md: 7 }
         }}
       >
         {/* Cột trái: Chữ lớn */}
-        <Grid item xs={12} md={6} sx={{
-          display: "flex",
-          alignItems: "center",
-          mt: 20,
-          justifyContent: { xs: "right", md: "right" },
-          pr: { md: 7, xs: 0 }
-        }}>
+        <Grid item xs={12} md={6}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            mt: { xs: 2, md: 20 },
+            justifyContent: { xs: "center", md: "right" },
+            pr: { md: 7, xs: 0 }
+          }}>
           <Typography
             variant="h2"
             sx={{
               fontWeight: 400,
-              fontSize: 50,
+              fontSize: { xs: 26, sm: 34, md: 50 },
               color: "#232C36",
               lineHeight: 1.15,
               fontFamily: "'Martel', serif",
@@ -71,13 +72,14 @@ export default function KeyFactorSection() {
           </Typography>
         </Grid>
         {/* Cột phải: Card chồng */}
-        <Grid item xs={12} md={6} sx={{
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: { xs: "center", md: "flex-start" },
-          pl: { md: 7, xs: 0 },
-        }}>
-          <Box sx={{ width: CARD_WIDTH, position: "relative", mt: { xs: 5, md: 0 } }}>
+        <Grid item xs={12} md={6}
+          sx={{
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: { xs: "center", md: "flex-start" },
+            pl: { md: 7, xs: 0 },
+          }}>
+          <Box sx={{ width: CARD_WIDTH, position: "relative", mt: { xs: 5, md: 0 }, maxWidth: 500 }}>
             {cardData.map((card, idx) => {
               let marginTop;
               if (idx === 0) {
@@ -92,10 +94,10 @@ export default function KeyFactorSection() {
                   key={idx}
                   elevation={6}
                   sx={{
-                    width: "100%",
+                    width: CARD_WIDTH,
                     borderRadius: "18px",
                     background: card.bgColor,
-                    p: 2.2,
+                    p: { xs: 1.5, sm: 2.2 },
                     mt: marginTop,
                     boxShadow: `
                       0 20px 80px 0 rgba(51, 76, 67, 0.34),
@@ -119,12 +121,11 @@ export default function KeyFactorSection() {
                     sx={{
                       fontFamily: '"Orbitron", "Roboto", sans-serif',
                       fontWeight: 700,
-                      fontSize: 17,
+                      fontSize: { xs: 15, sm: 16.5, md: 17 },
                       mb: 0.7,
                       letterSpacing: "0.5px",
                       textTransform: "uppercase",
-                      background:
-                        "linear-gradient(90deg, #184C35 0%, #51B949 50%, #A8DCA4 100%)",
+                      background: "linear-gradient(90deg, #184C35 0%, #51B949 50%, #A8DCA4 100%)",
                       WebkitBackgroundClip: "text",
                       WebkitTextFillColor: "transparent",
                       backgroundClip: "text",
@@ -137,7 +138,7 @@ export default function KeyFactorSection() {
                     variant="body2"
                     sx={{
                       color: "#233A29",
-                      fontSize: 15,
+                      fontSize: { xs: 13.5, sm: 14.5, md: 15 },
                       lineHeight: 1.48,
                       fontFamily: "'Martel', serif",
                       fontWeight: 400,
@@ -151,14 +152,13 @@ export default function KeyFactorSection() {
           </Box>
         </Grid>
       </Grid>
-
       <Typography
         sx={{
-          mt: { xs: 1, md: 2 },
-          mb: { xs: 10, md: 16 },
+          mt: { xs: 2, md: 4 },
+          mb: { xs: 7, sm: 10, md: 16 },
           fontFamily: '"Orbitron", "Roboto", sans-serif',
           fontWeight: 700,
-          fontSize: { xs: 30, md: 44 },
+          fontSize: { xs: 20, sm: 30, md: 44 },
           letterSpacing: 2,
           textAlign: "center",
           textTransform: "uppercase",

@@ -1,4 +1,6 @@
-import { AppBar, Toolbar, Box, Button, IconButton, Drawer, List, ListItem, Tab, Tabs, Typography, useTheme } from '@mui/material';
+import {
+  AppBar, Toolbar, Box, Button, IconButton, Drawer, List, ListItem, Tab, Tabs, useTheme
+} from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useLocales from 'src/locales/use-locales';
 import Iconify from 'src/components/iconify';
@@ -13,63 +15,43 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const MENU_ITEMS = [
-    {
-      label: "Home",
-      path: '/',
-    },
-    {
-      label: "Foundation",
-      path: '/foundation',
-    },
-    {
-      label: "Ventures",
-      path: '/ventures',
-    },
-    {
-      label: "Liquidity",
-      path: '/liquidity',
-    },
-    {
-      label: "About",
-      path: '/about',
-    },
-    {
-      label: "Team",
-      path: '/team',
-    },
+    { label: "Home", path: '/' },
+    { label: "Foundation", path: '/foundation' },
+    { label: "Ventures", path: '/ventures' },
+    { label: "Liquidity", path: '/liquidity' },
+    { label: "About", path: '/about-us' },
+    { label: "Team", path: '/team' },
   ];
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
   const drawer = (
     <Box sx={{ width: 250 }}>
       <List>
         {MENU_ITEMS.map((item) => (
-          <ListItem key={item.path}>
+          <ListItem key={item.path} disablePadding>
             <Button
-            onClick={() => {
-              navigate(item.path);
-              setMobileOpen(false);
-            }}
-            sx={{
-              fontFamily: '"Martel", serif',
-              fontWeight: 600, // DemiBold = 600
-              fontSize: 18,
-              lineHeight: '22px',
-              letterSpacing: 0,
-              color: location.pathname === item.path ? '#51B949' : 'black',
-              width: '100%',
-              justifyContent: 'flex-start',
-              textTransform: 'none',
-              px: 0,
-              background: 'none',
-            }}
-          >
-            {item.label}
-          </Button>
-                    </ListItem>
+              onClick={() => {
+                navigate(item.path);
+                setMobileOpen(false);
+              }}
+              sx={{
+                fontFamily: '"Martel", serif',
+                fontWeight: 600,
+                fontSize: { xs: 16, sm: 18 },
+                lineHeight: '22px',
+                color: location.pathname === item.path ? '#51B949' : 'black',
+                width: '100%',
+                justifyContent: 'flex-start',
+                textTransform: 'none',
+                px: 0,
+                background: 'none',
+                minHeight: 48,
+              }}
+            >
+              {item.label}
+            </Button>
+          </ListItem>
         ))}
       </List>
     </Box>
@@ -82,78 +64,82 @@ export default function Navbar() {
       sx={{
         background: 'linear-gradient(90deg, rgba(168,220,164,0.15) 0%, rgba(255,255,255,0.8) 100%)',
         boxShadow: '0 2px 12px 0 rgba(80, 130, 80, 0.08)',
-        px: { xs: 1, md: 4 },
-        py: 1,
+        px: { xs: 0.5, sm: 2, md: 4 },
+        py: { xs: 0.5, md: 1 },
         backdropFilter: 'blur(10px)',
       }}
     >
-      <Toolbar sx={{ minHeight: 72, p: 0, width: '100%' }}>
-  <Box
-    sx={{
-      display: 'flex',
-      alignItems: 'center',
-      width: '100%',
-      px: { xs: 1, md: 4 },
-    }}
-  >
-    {/* Logo bên trái */}
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        height: "60px",
-        pl: { xs: 3, md: 9 },
-        flexShrink: 0,
-      }}
-    >
-      <img
-        src="/logo/Logo.png"
-        alt="SR Labs"
-        style={{
-          height: "85%",
-          width: "auto",
-          display: "block",
+      <Toolbar
+        sx={{
+          minHeight: { xs: 56, sm: 64, md: 72 },
+          px: 0,
+          width: '100%',
         }}
-      />
-    </Box>
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+            px: { xs: 1, sm: 2, md: 4 },
+          }}
+        >
+          {/* Logo */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              height: { xs: 44, sm: 56, md: 60 },
+              pl: { xs: 1.5, sm: 2, md: 3 },
+              pr: { xs: 2, sm: 3, md: 4 },
+              flexShrink: 0,
+            }}
+          >
+            <img
+              src="/logo/Logo.png"
+              alt="SR Labs"
+              style={{
+                height: "90%",
+                maxHeight: 48,
+                width: "auto",
+                display: "block",
+              }}
+            />
+          </Box>
 
-    {/* Menu giữa */}
-    <Box
-      sx={{
-        flex: 1,
-        display: { xs: 'none', md: 'flex' },
-        alignItems: 'center',
-        justifyContent: 'center',
-        ml: "-20px",
-      }}
-    >
-            <Tabs 
+
+          {/* Menu - Desktop */}
+          <Box
+            sx={{
+              flex: 1,
+              display: { xs: 'none', md: 'flex' },
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Tabs
               value={location.pathname}
               onChange={(e, newValue) => navigate(newValue)}
-              sx={{ 
-                ml: "-25px",
-                minHeight: 72,
+              sx={{
+                minHeight: { xs: 48, md: 72 },
                 '& .MuiTabs-indicator': {
                   display: 'none',
                 },
                 '& .MuiTab-root': {
-                  minHeight: 72,
+                  minHeight: { xs: 48, md: 72 },
                   fontFamily: '"Martel", serif',
-                  fontWeight: 600, // DemiBold = 600
-                  fontSize: 18,
-                  lineHeight: '22px',
-                  letterSpacing: 0,
+                  fontWeight: 600,
+                  fontSize: { xs: 14, sm: 16, md: 18 },
                   textTransform: 'none',
                   color: '#000',
                   position: 'relative',
                   overflow: 'visible',
+                  px: { xs: 1, sm: 2.5 },
                   '&.Mui-selected': {
                     color: '#51B949',
                   },
-                  '&:hover': {
-                    '& .reveal-text': {
-                      transform: 'scaleY(1)',
-                    }
+                  '&:hover .reveal-text': {
+                    transform: 'scaleY(1)',
                   }
                 },
               }}
@@ -164,16 +150,12 @@ export default function Navbar() {
                   value={item.path}
                   label={
                     <Box sx={{ position: 'relative', whiteSpace: 'nowrap' }}>
-                      {/* Chữ mặc định */}
                       <Box sx={{ visibility: 'hidden', lineHeight: 1.1 }}>{item.label}</Box>
-                      {/* Chữ đen */}
+                      {/* Normal text */}
                       <Box
                         sx={{
                           position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
+                          inset: 0,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -184,15 +166,12 @@ export default function Navbar() {
                       >
                         {item.label}
                       </Box>
-                      {/* Chữ xanh lá (active) */}
+                      {/* Green text */}
                       <Box
                         className="reveal-text"
                         sx={{
                           position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
+                          inset: 0,
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -213,23 +192,26 @@ export default function Navbar() {
             </Tabs>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <LanguageToggle />
-              {/* Hamburger menu cho mobile */}
-              <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', ml: 1 }}>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="end"
-                  onClick={handleDrawerToggle}
-                >
-                  <Iconify icon="eva:menu-fill" />
-                </IconButton>
-              </Box>
+          {/* Language & Hamburger */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1.5 } }}>
+            <LanguageToggle />
+            {/* Hamburger for mobile */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', ml: 1 }}>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="end"
+                onClick={handleDrawerToggle}
+                sx={{ p: 1.2 }}
+              >
+                <Iconify icon="eva:menu-fill" />
+              </IconButton>
             </Box>
+          </Box>
         </Box>
       </Toolbar>
 
+      {/* Drawer for Mobile */}
       <Drawer
         variant="temporary"
         anchor="right"

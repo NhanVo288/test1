@@ -20,11 +20,11 @@ export default function FeatureCards() {
     <Box sx={{
       width: "100%",
       mt: { xs: 2, md: 6 },
-      px: { xs: 1, md: 2 },
+      px: { xs: 0.5, md: 2 },
       py: { xs: 2, md: 4 },
       overflowX: "hidden",
     }}>
-      <Grid container spacing={-10} justifyContent="center">
+      <Grid container spacing={{ xs: 4, md: -10 }} justifyContent="center">
         {CARDS.map((card, idx) => (
           <Grid
             item
@@ -34,24 +34,33 @@ export default function FeatureCards() {
             sx={{
               display: "flex",
               justifyContent: "center",
+              mb: { xs: 2, md: 0 },
             }}
           >
             {/* Box cha relative */}
-            <Box sx={{ position: "relative", width: "450px", minHeight: 360, ml: 10 }}>
+            <Box
+              sx={{
+                position: "relative",
+                width: { xs: "100%", sm: "90%", md: "450px" },
+                minHeight: { xs: 240, sm: 260, md: 360 },
+                ml: { xs: 0, md: 10 },
+                maxWidth: 500,
+              }}
+            >
               {/* Marker tuyệt đối */}
               <Box
                 sx={{
                   position: "absolute",
-                  left: -10, // Để marker bám sát border card
-                  ...(idx === 0 && { top: 38, height: 70, bgcolor: "#d3ffce" }),
-                  ...(idx === 1 && { top: "50%", height: 70, transform: "translateY(-50%)", bgcolor: "#b1f1ab" }),
-                  ...(idx === 2 && { bottom: 38, height: 70, bgcolor: "#75f169" }),
-                  width: 18,
-                  borderRadius: "18px",
+                  left: -10,
+                  ...(idx === 0 && { top: 38, height: 50, bgcolor: "#d3ffce" }),
+                  ...(idx === 1 && { top: "50%", height: 50, transform: "translateY(-50%)", bgcolor: "#b1f1ab" }),
+                  ...(idx === 2 && { bottom: 38, height: 50, bgcolor: "#75f169" }),
+                  width: 16,
+                  borderRadius: "16px",
                   border: "1.5px solid #C9C9C9",
                   zIndex: 1,
                   display: { xs: "none", md: "block" },
-                  opacity: 2,
+                  opacity: 1,
                 }}
               />
               {/* Card nằm trên marker */}
@@ -60,16 +69,16 @@ export default function FeatureCards() {
                   position: "relative",
                   border: "1.5px solid #C9C9C9",
                   borderRadius: 2,
-                  p: { xs: 2.5, md: 3.5 },
+                  p: { xs: 2, sm: 2.5, md: 3.5 },
                   background: "#fff",
-                  minHeight: 360,
+                  minHeight: { xs: 220, sm: 240, md: 360 },
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   boxShadow: "none",
                   width: "100%",
                   zIndex: 2,
-                  opacity: 0.9,
+                  opacity: 0.96,
                   ml: 0,
                 }}
               >
@@ -77,7 +86,7 @@ export default function FeatureCards() {
                   sx={{
                     fontFamily: '"Orbitron", "Roboto", sans-serif',
                     fontWeight: 700,
-                    fontSize: 20,
+                    fontSize: { xs: 17, sm: 18, md: 20 },
                     letterSpacing: 1,
                     background: 'linear-gradient(90deg, #184C35 0%, #51B949 50%, #A8DCA4 100%)',
                     WebkitBackgroundClip: 'text',
@@ -86,7 +95,7 @@ export default function FeatureCards() {
                     color: 'transparent',
                     opacity: 1,
                     textAlign: "center",
-                    mb: 2,
+                    mb: { xs: 1, md: 2 },
                     textTransform: "uppercase",
                   }}
                 >
@@ -95,9 +104,10 @@ export default function FeatureCards() {
                 <Typography
                   sx={{
                     fontFamily: '"Martel", serif',
-                    fontSize: 16,
+                    fontSize: { xs: 14.5, sm: 15, md: 16 },
                     color: "black",
                     textAlign: "center",
+                    lineHeight: 1.6,
                   }}
                 >
                   {card.desc}

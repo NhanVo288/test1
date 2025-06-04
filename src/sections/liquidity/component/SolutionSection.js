@@ -26,7 +26,7 @@ export default function CexDexSolution() {
             sx={{
               fontFamily: '"Martel", serif',
               fontWeight: 600,
-              fontSize: 40,
+              fontSize: { xs: 25, sm: 32, md: 40 },
               mb: 1,
               color: "#0c0c0c",
             }}
@@ -37,7 +37,7 @@ export default function CexDexSolution() {
             sx={{
               fontFamily: '"Orbitron",sans-serif',
               fontWeight: 700,
-              fontSize: { xs: 30, md: 44 },
+              fontSize: { xs: 20, sm: 28, md: 44 },
               background: 'linear-gradient(90deg, #184C35 0%, #51B949 50%, #A8DCA4 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -55,13 +55,12 @@ export default function CexDexSolution() {
           <Typography
             sx={{
               mt: 3,
-              fontSize: 20,
+              fontSize: { xs: 15, sm: 17, md: 20 },
               color: "#222",
-
               fontFamily: '"Martel", serif',
             }}
           >
-           Our team of experts leverages advanced trading algorithms and extensive liquidity networks to create optimal liquidity solutions. Through our comprehensive suite of liquidity tools and in-depth market knowledge, we empower projects to effectively manage risk and maximize returns from market.
+            Our team of experts leverages advanced trading algorithms and extensive liquidity networks to create optimal liquidity solutions. Through our comprehensive suite of liquidity tools and in-depth market knowledge, we empower projects to effectively manage risk and maximize returns from market.
           </Typography>
         </Grid>
 
@@ -70,10 +69,11 @@ export default function CexDexSolution() {
           <Box
             sx={{
               borderRadius: 2,
-              px: { xs: 2, md: 4 },
-              py: { xs: 4, md: 6 },
-              minWidth: "540px",
-              minHeight: "280px",
+              px: { xs: 0, sm: 2, md: 4 },
+              py: { xs: 2, sm: 3, md: 6 },
+              width: { xs: "100%", sm: 340, md: 540 },
+              minWidth: { xs: "auto", md: 340 },
+              minHeight: { xs: 140, md: 280 },
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -81,11 +81,11 @@ export default function CexDexSolution() {
           >
             {/* Hình ảnh bạn upload, giữ nguyên height */}
             <img
-              src="/logo/svg/cexdex.svg" // Đổi đường dẫn đúng với hình bạn upload
+              src="/logo/svg/cexdex.svg"
               alt="CEX DEX Solution"
               style={{
                 width: "100%",
-                maxWidth: "auto",
+                maxWidth: 540,
                 height: "auto",
                 display: "block",
               }}

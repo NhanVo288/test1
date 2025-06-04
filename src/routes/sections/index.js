@@ -9,6 +9,7 @@ const HomePage = lazy(() => import("src/pages/HomePage"));
 const LiquidityPage = lazy(() => import("src/pages/LiquidityPage"));
 const FoundationPage = lazy(() => import("src/pages/FoundationPage"));
 const TeamPage = lazy(() => import("src/pages/TeamPage"));
+const AboutUsPage = lazy(() => import("src/pages/AboutUsPage"));
 
 export default function Router() {
   return useRoutes([
@@ -26,6 +27,7 @@ export default function Router() {
         { path: "foundation", element: <FoundationPage /> },
         { path: "liquidity", element: <LiquidityPage /> },
         { path: "team", element: <TeamPage /> },
+        { path: "about-us", element: <AboutUsPage /> },
       ],
     },
 

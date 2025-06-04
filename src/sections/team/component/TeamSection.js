@@ -11,8 +11,6 @@ export default function GreenSlideOverlay({ onDone }) {
   const slideProgress = useMotionValue(0);
   const slideStarted = useRef(false);
 
-  // Step 
-
   useEffect(() => {
     if (step === 0) {
       const t = setTimeout(() => setStep(1), 1200);
@@ -57,7 +55,6 @@ export default function GreenSlideOverlay({ onDone }) {
     if (step === 4 && onDone) onDone();
   }, [step, onDone]);
 
-  // Màu chữ động khi slide out
   const textColor = useTransform(slideProgress, [0, 1], ["#fff", "#3e9949"]);
   const showText = step >= 2;
 
@@ -65,16 +62,16 @@ export default function GreenSlideOverlay({ onDone }) {
     <Box
       sx={{
         width: "100%",
-        minHeight: { xs: 480, md: 700 }, 
+        minHeight: "100vh",
         position: "relative",
         overflow: "hidden",
-        marginTop: "88px", 
+        marginTop: { xs: "6px", md: "88px" },
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        px: { xs: 2, sm: 3, md: 0 }, // mobile/tablet nhiều padding hơn
       }}
     >
-      
       {!hideBg && (
         <m.div
           initial={{ y: "100%", x: "0%" }}
@@ -92,7 +89,7 @@ export default function GreenSlideOverlay({ onDone }) {
             top: 0,
             left: 0,
             width: "100%",
-            height: "100%", 
+            height: "100%",
             background: "linear-gradient(135deg, #3e9949 0%, #184C35 100%)",
             pointerEvents: "none",
             zIndex: 0,
@@ -100,12 +97,12 @@ export default function GreenSlideOverlay({ onDone }) {
         />
       )}
 
-      {/* Chữ  */}
+      {/* Chữ */}
       {showText && (
         <Box
           sx={{
             width: "100%",
-            height: "100%", 
+            height: "100%",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -114,6 +111,7 @@ export default function GreenSlideOverlay({ onDone }) {
             left: 0,
             zIndex: 2,
             pointerEvents: "none",
+            px: { xs: 2, sm: 3, md: 0 }, // tăng padding khi mobile
           }}
         >
           <m.span
@@ -129,25 +127,31 @@ export default function GreenSlideOverlay({ onDone }) {
             }}
             style={{
               display: "inline-block",
-              minWidth: 380,
+              maxWidth: "100vw",
+              minWidth: 0,
               WebkitMaskImage:
                 "linear-gradient(to right, black var(--reveal), transparent var(--reveal))",
               WebkitMaskSize: "100% 100%",
               WebkitMaskRepeat: "no-repeat",
               color: textColor,
               transition: "color 0.2s",
+              whiteSpace: "normal",
+              textAlign: "center",
             }}
           >
             <Typography
               sx={{
                 fontFamily: '"Martel", sans-serif',
                 fontWeight: 900,
-                fontSize: { xs: 48, md: 96 },
+                fontSize: { xs: 28, sm: 40, md: 96 }, // responsive: desktop giữ nguyên
                 letterSpacing: 3,
                 textAlign: "center",
                 textShadow: "0 4px 20px rgba(0,0,0,0.16), 0 2px 0 #328C45",
                 lineHeight: 1.08,
                 userSelect: "none",
+                whiteSpace: "normal",
+                wordBreak: "break-word",
+                m: 0,
               }}
             >
               {TEXT}

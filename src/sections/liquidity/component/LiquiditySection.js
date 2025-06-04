@@ -11,12 +11,12 @@ export default function SloganBanner() {
     <Box
       sx={{
         width: "auto",
-        minHeight: "100vh",
+        minHeight: { xs: "60vh", md: "100vh" }, // mobile thấp hơn
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        px: 2,
-        py: 4,
+        px: { xs: 1, md: 2 },
+        py: { xs: 2, md: 4 },
         boxSizing: "border-box",
         overflow: "hidden",
       }}
@@ -35,7 +35,7 @@ export default function SloganBanner() {
             sx={{
               fontFamily: '"Orbitron", "Roboto", sans-serif',
               fontWeight: 700,
-              fontSize: 25,
+              fontSize: { xs: 15, sm: 19, md: 25 }, // desktop giữ 25, mobile nhỏ lại
               letterSpacing: 1,
               textTransform: "uppercase",
               lineHeight: 1.22,
@@ -60,7 +60,7 @@ export default function SloganBanner() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
-                    delay: 0.2 + i * 0.025, // không cộng offset dòng trên nữa
+                    delay: 0.2 + i * 0.025,
                     duration: 0.5
                   }}
                   style={{ display: "inline-block" }}

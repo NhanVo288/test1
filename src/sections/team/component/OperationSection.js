@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box,Typography } from "@mui/material";
+import { useTheme, useMediaQuery, Box, Typography } from "@mui/material";
 import { m } from "framer-motion";
 import { AdvisorListCard } from "./ListCard";
 import { AdvisorDetailPanel } from "./DetailCard";
@@ -73,28 +73,29 @@ const advisors = [
   ];
   
 
-  const cardW = 220;
+  
   const cardH = 230;
-  const spaceX = 30;
   const spaceY = 20;
   const targetLayout = [
-    { left: 0,                   top: 0 },                  // card 1
-    { left: cardW + spaceX,      top: 0 },                  // card 2
-    { left: 2 * (cardW + spaceX),top: 0 },                  // card 3
-    { left: 0,                   top: cardH + spaceY },     // card 4
-    { left: cardW + spaceX,      top: cardH + spaceY },     // card 5
-    { left: 2 * (cardW + spaceX),top: cardH + spaceY }      // card 6
+    { left: -180,top: 60 },                  // card 1
+    { left: 40,top: 40 },                  // card 2
+    { left: 260,top: 10 },                  // card 3
+    { left: -180,top: 380 },     // card 4
+    { left: 40,top: 360 },     // card 5
+    { left: 260 ,top: 330 }      // card 6
   ];
   
 
 export default function OperationSplitView() {
   const [currentIdx, setCurrentIdx] = useState(null);
   const [animated, setAnimated] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleClick = (idx) => {
     if (!animated) {
       setAnimated(true);
-      // delay 1 tí để animation chạy xong rồi mới hiện panel detail
+
       setTimeout(() => setCurrentIdx(idx), 500);
     } else {
       setCurrentIdx(idx);
@@ -127,11 +128,20 @@ export default function OperationSplitView() {
               flexShrink: 0,
             }}
           >
-            ADVISOR
+            OPERATION
           </Typography>
         </Box>
 
-      
+      {isMobile ? (
+      <Box sx={{ width: "100%", mx: "auto", mt: 4 }}>
+        
+        {advisors.map((a, idx) => (
+          <Box key={a.name} sx={{ mb: 4, ml: -10 }}>
+            <AdvisorDetailPanel advisor={a} direction={0} />
+          </Box>
+        ))}
+      </Box>
+    ) : (
       <Box sx={{ width: 900, minHeight: 500, mx: "auto", mt: 8, display: "flex" }}>
         {/* BAN ĐẦU: Flexbox hàng ngang căn giữa */}
         {!animated && (
@@ -205,6 +215,7 @@ export default function OperationSplitView() {
           </Box>
         )}
       </Box>
+    )}
     </Box>
   );
 }

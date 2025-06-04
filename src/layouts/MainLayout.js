@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 function MainLayout({ children }) {
   return (
     <>
-    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
       <Navbar />
       <FullscreenBlobBackground />
       <Box component="main" sx={{ position: 'relative', zIndex: 1 }}>

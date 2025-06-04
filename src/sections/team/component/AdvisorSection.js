@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box,Typography } from "@mui/material";
+import { useTheme, useMediaQuery, Box, Typography } from "@mui/material";
 import { m } from "framer-motion";
 import { AdvisorListCard } from "./ListCard";
 import { AdvisorDetailPanel } from "./DetailCard";
@@ -50,7 +50,9 @@ const targetLayout = [
 export default function AdvisorSplitView() {
   const [currentIdx, setCurrentIdx] = useState(null);
   const [animated, setAnimated] = useState(false);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  
   const handleClick = (idx) => {
     if (!animated) {
       setAnimated(true);
@@ -118,7 +120,16 @@ export default function AdvisorSplitView() {
           </Typography>
         </Box>
 
-      
+      {isMobile ? (
+      <Box sx={{ width: "100%", mx: "auto", mt: 4 }}>
+        
+        {advisors.map((a, idx) => (
+          <Box key={a.name} sx={{ mb: 4, ml: -10 }}>
+            <AdvisorDetailPanel advisor={a} direction={0} />
+          </Box>
+        ))}
+      </Box>
+    ) : (
       <Box sx={{ width: 900, minHeight: 500, mx: "auto", mt: 8, display: "flex" }}>
         {/* BAN ĐẦU: Flexbox hàng ngang căn giữa */}
         {!animated && (
@@ -158,7 +169,7 @@ export default function AdvisorSplitView() {
             {advisors.map((a, idx) => (
               <m.div
                 key={a.name}
-                initial={{ left: 350 + idx * 40, top: 90 }} // xuất phát tại vị trí cũ giữa hàng ngang
+                initial={{ left: 350 + idx * 40, top: 90 }} 
                 animate={targetLayout[idx]}
                 transition={{
                   type: "spring",
@@ -189,6 +200,7 @@ export default function AdvisorSplitView() {
           </Box>
         )}
       </Box>
+    )}
     </Box>
   );
 }
