@@ -25,7 +25,7 @@ export default function SRFoundationTitle() {
     <Box 
       sx={{
         width: '100%',
-        minHeight: '100vh',
+        minHeight: '85vh',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

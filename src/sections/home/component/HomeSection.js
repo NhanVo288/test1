@@ -5,7 +5,7 @@ function HomeSection() {
   return (
     <Box
       sx={{
-        minHeight: 'calc(100vh - 72px)',
+        minHeight: '85vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -41,7 +41,7 @@ function HomeSection() {
           sx={{
             fontFamily: '"Orbitron", sans-serif',
             fontWeight: 'bold',
-            fontSize: { xs: '22px', sm: '30px', md: '46.81px' }, // Responsive font
+            fontSize: { xs: '22px', sm: '30px', md: '46.81px' }, 
             lineHeight: { xs: '36px', sm: '48px', md: '73.7px' },
             letterSpacing: 0,
             width: 'auto',
