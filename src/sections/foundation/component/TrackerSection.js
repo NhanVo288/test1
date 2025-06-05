@@ -16,9 +16,9 @@ export default function TrackSection() {
         sx={{
           fontFamily: '"Martel", serif',
           fontWeight: 500,
-          fontSize: 40,
+          fontSize: { xs: 24, md: 40 }, 
           mb: { xs: 2, md: 4 },
-          lineHeight: 1.8,
+          lineHeight: 1.5, 
           display: 'block'
         }}
       >
@@ -34,18 +34,17 @@ export default function TrackSection() {
       </Typography>
 
       <Grid
-        container
         justifyContent="center"
-        spacing={1}
+        spacing={{ xs: 3, md: 1 }} 
         sx={{
           width: "100%",
-          maxWidth: { xs: "100%", md: 1100 },  // Không nên để "100vw"
+          maxWidth: { xs: "100%", md: 1100 },
           mx: 'auto',
-          mt: 10,
-          px: 1, // nhỏ thôi!
+          mt: { xs: 4, md: 10 }, 
+          px: { xs: 1, md: 2 },  
         }}
       >
-        <Grid item xs={12} md={4} sx={{ textAlign: 'center' }}>
+        <Grid item xs={12} md={4} sx={{ textAlign: 'center', mt: { xs: 3, md: 0 } }}>
           <Box
             sx={{
               display: 'flex',

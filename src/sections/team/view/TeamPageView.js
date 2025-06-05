@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { m } from "framer-motion";
 import AdvisorSection from "../component/AdvisorSection";
-import TeamSection from "../component/TeamSection";
+import TeamSection from "../component/TeamOverlay";
 import OperationSection from "../component/OperationSection"
 
 function TeamPageView() {

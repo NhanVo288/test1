@@ -2,12 +2,12 @@ import { Box, Typography } from "@mui/material";
 import { m, AnimatePresence } from "framer-motion";
 import PropTypes from 'prop-types';
 
-export function AdvisorDetailPanel({ advisor, direction }) {
+export function PersonDetailPanel({ Person, direction }) {
   return (
     <Box sx={{ width: 420, minHeight: 420, position: "relative", ml: 8,overflow: "hidden" }}>
       <AnimatePresence initial={false} custom={direction}>
         <m.div
-          key={advisor.name}
+          key={Person.name}
           initial={{ x: direction > 0 ? 400 : -400, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: direction > 0 ? -400 : 400, opacity: 0 }}
@@ -25,12 +25,12 @@ export function AdvisorDetailPanel({ advisor, direction }) {
           }}
         >
           <img
-            src={advisor.avatar}
-            alt={advisor.name}
+            src={Person.avatar}
+            alt={Person.name}
             style={{ width: 200, height: 180, borderRadius: 10, objectFit: "cover", marginBottom: 10 }}
           />
           <Typography sx={{ fontFamily: "Orbitron, Arial Black", fontWeight: 700, fontSize: 25, color: "#174C36" }}>
-            {advisor.name}
+            {Person.name}
           </Typography>
           <Typography sx={{
             fontSize: 22,
@@ -39,10 +39,10 @@ export function AdvisorDetailPanel({ advisor, direction }) {
             background: "rgba(60,120,90,0.10)",
             px: 1.5, borderRadius: 1, my: 1, display: "inline-block"
           }}>
-            {advisor.position} {advisor.company}
+            {Person.position} {Person.company}
           </Typography>
           <ul>
-            {advisor.highlights?.map((item, idx) => (
+            {Person.highlights?.map((item, idx) => (
               <li key={idx} style={{ fontSize: 15 }}>
                 {item}
               </li>
@@ -54,8 +54,8 @@ export function AdvisorDetailPanel({ advisor, direction }) {
   );
 }
 
-AdvisorDetailPanel.propTypes = {
-  advisor: PropTypes.shape({
+PersonDetailPanel.propTypes = {
+  Person: PropTypes.shape({
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
     position: PropTypes.string.isRequired,

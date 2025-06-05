@@ -1,4 +1,5 @@
 import { Box, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function AboutUsSection() {
   return (
@@ -67,6 +68,8 @@ export default function AboutUsSection() {
 
       <Button
         variant="contained"
+        component={Link}
+        to="/about-us"
         sx={{
           background: '#181818',
           color: '#fff',

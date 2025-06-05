@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTheme, useMediaQuery, Box, Typography } from "@mui/material";
 import { m } from "framer-motion";
 import { AdvisorListCard } from "./ListCard";
-import { AdvisorDetailPanel } from "./DetailCard";
+import { PersonDetailPanel } from "./DetailCard";
 
 // Demo data
 const advisors = [
@@ -76,7 +76,7 @@ export default function AdvisorSplitView() {
         <Typography
           component="h2"
           sx={{
-            fontSize: 30,
+            fontSize: { xs: 16, md: 30, lg: 30 },     
             fontFamily: '"Martel", sans-serif',
             fontWeight: 400,
             color: "#1b2a2b",
@@ -121,11 +121,11 @@ export default function AdvisorSplitView() {
         </Box>
 
       {isMobile ? (
-      <Box sx={{ width: "100%", mx: "auto", mt: 4 }}>
+      <Box sx={{ width: "100%", mx: "auto", mt: 4,overflowX: "hidden" }}>
         
         {advisors.map((a, idx) => (
           <Box key={a.name} sx={{ mb: 4, ml: -10 }}>
-            <AdvisorDetailPanel advisor={a} direction={0} />
+            <PersonDetailPanel Person={a} direction={0} />
           </Box>
         ))}
       </Box>
@@ -196,7 +196,7 @@ export default function AdvisorSplitView() {
         {/* Panel chi tiết */}
         {currentIdx !== null && (
           <Box>
-            <AdvisorDetailPanel advisor={advisors[currentIdx]} direction={0} />
+            <PersonDetailPanel Person={advisors[currentIdx]} direction={0} />
           </Box>
         )}
       </Box>

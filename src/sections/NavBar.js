@@ -1,7 +1,7 @@
 import {
   AppBar, Toolbar, Box, Button, IconButton, Drawer, List, ListItem, Tab, Tabs, useTheme
 } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation,Link } from 'react-router-dom';
 import useLocales from 'src/locales/use-locales';
 import Iconify from 'src/components/iconify';
 import { useState } from 'react';
@@ -64,151 +64,155 @@ export default function Navbar() {
       sx={{
         background: 'linear-gradient(90deg, rgba(168,220,164,0.15) 0%, rgba(255,255,255,0.8) 100%)',
         boxShadow: '0 2px 12px 0 rgba(80, 130, 80, 0.08)',
-        px: { xs: 0.5, sm: 2, md: 4 },
-        py: { xs: 0.5, md: 1 },
         backdropFilter: 'blur(10px)',
+        py: { xs: 0.5, md: 1 },
+        px: 0, 
+        left: 0,
+        right: 0,
+        top: 0,
+        width: "100vw", // hoặc width: "100%" (nếu parent là body/html)
+        zIndex: themeObj => themeObj.zIndex.appBar,
       }}
     >
       <Toolbar
+        disableGutters
         sx={{
           minHeight: { xs: 56, sm: 64, md: 72 },
-          px: 0,
           width: '100%',
+          px: { xs: 1, md: 6, xl: 10 }, // nhỏ px mobile
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between', // luôn giữa trái/phải
         }}
       >
+
+        {/* Logo */}
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-            px: { xs: 1, sm: 2, md: 4 },
+            display: "flex",
+            alignItems: "center",
+            height: { xs: 44, sm: 56, md: 60 },
+            minWidth: { xs: 110, sm: 120, md: 140 },
+            flexShrink: 0,
+            mr: { xs: 1, md: 2 },
           }}
         >
-          {/* Logo */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              height: { xs: 44, sm: 56, md: 60 },
-              pl: { xs: 1.5, sm: 2, md: 3 },
-              pr: { xs: 2, sm: 3, md: 4 },
-              flexShrink: 0,
-            }}
-          >
+          
+          <Link to="/">
             <img
               src="/logo/Logo.png"
               alt="SR Labs"
               style={{
-                height: "90%",
-                maxHeight: 48,
+                height: "auto",
+                maxHeight: 40,
                 width: "auto",
                 display: "block",
               }}
             />
-          </Box>
+          </Link>
+          
+        </Box>
 
 
-          {/* Menu - Desktop */}
-          <Box
+        {/* Menu */}
+        <Box
+          sx={{
+            flex: 1,
+            display: { xs: 'none', md: 'flex' },
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Tabs
+            value={location.pathname}
+            onChange={(e, newValue) => navigate(newValue)}
             sx={{
-              flex: 1,
-              display: { xs: 'none', md: 'flex' },
-              alignItems: 'center',
-              justifyContent: 'center',
+              minHeight: { xs: 48, md: 72 },
+              '& .MuiTabs-indicator': { display: 'none' },
+              '& .MuiTab-root': {
+                minHeight: { xs: 48, md: 72 },
+                fontFamily: '"Martel", serif',
+                fontWeight: 600,
+                fontSize: { xs: 14, sm: 16, md: 18 },
+                textTransform: 'none',
+                color: '#000',
+                position: 'relative',
+                px: { xs: 1, sm: 2.5 },
+                '&.Mui-selected': { color: '#51B949' },
+                '&:hover .reveal-text': { transform: 'scaleY(1)' }
+              },
             }}
           >
-            <Tabs
-              value={location.pathname}
-              onChange={(e, newValue) => navigate(newValue)}
-              sx={{
-                minHeight: { xs: 48, md: 72 },
-                '& .MuiTabs-indicator': {
-                  display: 'none',
-                },
-                '& .MuiTab-root': {
-                  minHeight: { xs: 48, md: 72 },
-                  fontFamily: '"Martel", serif',
-                  fontWeight: 600,
-                  fontSize: { xs: 14, sm: 16, md: 18 },
-                  textTransform: 'none',
-                  color: '#000',
-                  position: 'relative',
-                  overflow: 'visible',
-                  px: { xs: 1, sm: 2.5 },
-                  '&.Mui-selected': {
-                    color: '#51B949',
-                  },
-                  '&:hover .reveal-text': {
-                    transform: 'scaleY(1)',
-                  }
-                },
-              }}
-            >
-              {MENU_ITEMS.map((item) => (
-                <Tab
-                  key={item.path}
-                  value={item.path}
-                  label={
-                    <Box sx={{ position: 'relative', whiteSpace: 'nowrap' }}>
-                      <Box sx={{ visibility: 'hidden', lineHeight: 1.1 }}>{item.label}</Box>
-                      {/* Normal text */}
-                      <Box
-                        sx={{
-                          position: 'absolute',
-                          inset: 0,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#000',
-                          zIndex: 1,
-                          lineHeight: 1.1,
-                        }}
-                      >
-                        {item.label}
-                      </Box>
-                      {/* Green text */}
-                      <Box
-                        className="reveal-text"
-                        sx={{
-                          position: 'absolute',
-                          inset: 0,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: '#96fd88',
-                          zIndex: 2,
-                          transform: location.pathname === item.path ? 'scaleY(1)' : 'scaleY(0)',
-                          transformOrigin: 'bottom',
-                          transition: 'transform 0.4s cubic-bezier(.4,0,.2,1)',
-                          lineHeight: 1.1,
-                        }}
-                      >
-                        {item.label}
-                      </Box>
-                    </Box>
-                  }
-                />
-              ))}
-            </Tabs>
-          </Box>
-
-          {/* Language & Hamburger */}
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: { xs: 0.5, sm: 1.5 } }}>
-            <LanguageToggle />
-            {/* Hamburger for mobile */}
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', ml: 1 }}>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="end"
-                onClick={handleDrawerToggle}
-                sx={{ p: 1.2 }}
-              >
-                <Iconify icon="eva:menu-fill" />
-              </IconButton>
-            </Box>
-          </Box>
+            {MENU_ITEMS.map((item) => (
+              <Tab
+                key={item.path}
+                value={item.path}
+                label={
+                  <Box sx={{ position: 'relative', whiteSpace: 'nowrap' }}>
+                    <Box sx={{ visibility: 'hidden', lineHeight: 1.1 }}>{item.label}</Box>
+                    <Box
+                      sx={{
+                        position: 'absolute', inset: 0,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        color: '#000', zIndex: 1, lineHeight: 1.1,
+                      }}
+                    >{item.label}</Box>
+                    <Box
+                      className="reveal-text"
+                      sx={{
+                        position: 'absolute', inset: 0,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        color: '#96fd88', zIndex: 2,
+                        transform: location.pathname === item.path ? 'scaleY(1)' : 'scaleY(0)',
+                        transformOrigin: 'bottom',
+                        transition: 'transform 0.4s cubic-bezier(.4,0,.2,1)',
+                        lineHeight: 1.1,
+                      }}
+                    >{item.label}</Box>
+                  </Box>
+                }
+              />
+            ))}
+          </Tabs>
         </Box>
+
+        {/* Language= */}
+        <Box
+  sx={{
+    display: 'flex',
+    alignItems: 'center',
+    minWidth: { xs: 'auto', md: 160 },
+    mr: { xs: -10, md: 0 },
+    pr: { xs: 0, md: 0 },  // Không padding bên phải
+  }}
+>
+  {/* Mobile: Hamburger trước, LanguageToggle sau */}
+  <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center', gap: 1 }}>
+    <IconButton
+      color="inherit"
+      aria-label="open drawer"
+      edge="end"
+      onClick={handleDrawerToggle}
+      sx={{
+        p: "8px",    // padding nhỏ nhất
+        m: 0,
+      }}
+    >
+      <Iconify icon="eva:menu-fill" />
+    </IconButton>
+    <Box sx={{ m: 0, p: 0 }}>
+      <LanguageToggle />
+    </Box>
+  </Box>
+
+  {/* Desktop giữ nguyên LanguageToggle */}
+  <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+    <LanguageToggle />
+  </Box>
+</Box>
+
+
+
       </Toolbar>
 
       {/* Drawer for Mobile */}

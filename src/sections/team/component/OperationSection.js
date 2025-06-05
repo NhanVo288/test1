@@ -2,72 +2,74 @@ import { useState } from "react";
 import { useTheme, useMediaQuery, Box, Typography } from "@mui/material";
 import { m } from "framer-motion";
 import { AdvisorListCard } from "./ListCard";
-import { AdvisorDetailPanel } from "./DetailCard";
+import { PersonDetailPanel } from "./DetailCard";
 
-// Demo data
-const advisors = [
+
+const operations = [
     {
-      name: "Joo-pil Joeng",
-      avatar: "/logo/svg/avatar1.svg",
-      position: "CEO",
+      name: "Mr.Paul Kim ",
+      avatar: "/logo/svg/avatar4.svg",
+      position: "Founder-CEO",
       company: "Blockchaintoday",
       highlights: [
-        "Top 1 Korean Blockchain Korea since 2018",
-        "Korea Society of Fintech Blockchain Director",
-        "Co-founder Postech Blockchain Academy"
+        "10 years of living and investing in Korea",
+        "Invested and incubated more than 20 successful projects",
+        "Pioneer in the blockchain market since 2015"
       ]
     },
     {
-      name: "Edward Oh",
-      avatar: "/logo/svg/avatar2.svg",
-      position: "Managing Investor Partner",
-      company: "",
-      highlights: [
-        "Broad network of funds and investors in Korea and Japan.",
-        "Specializes in strategic investments in Korean gaming.",
-        "Experienced in top-tier Korean fund management."
-      ]
-    },
-    {
-      name: "Choi Huk",
-      avatar: "/logo/svg/avatar3.svg",
-      position: "Venture Partner",
-      company: "",
-      highlights: [
-        "20+ years of experience supporting startups in Korea.",
-        "Focused on venture capital investments.",
-        "5+ years of experience in blockchain technology."
-      ]
-    },
-    // 3 advisor mới
-    {
-      name: "Anna Kim",
-      avatar: "/logo/svg/avatar4.svg",
-      position: "Legal Advisor",
-      company: "",
-      highlights: [
-        "Experienced in blockchain legal compliance.",
-        "10+ years in international law."
-      ]
-    },
-    {
-      name: "Satoshi Tanaka",
+      name: "Ms.Lindsie Park",
       avatar: "/logo/svg/avatar5.svg",
-      position: "Tech Advisor",
+      position: "COO",
       company: "",
       highlights: [
-        "Lead developer in blockchain projects.",
-        "Expert in smart contract security."
+        "Building global relationships in Korea, Japan, and Vietnam",
+        "Fluent in English, Korean, Vietnamese",
+        "Investing in the Korean web3 market."
       ]
     },
     {
-      name: "Jenny Park",
+      name: "Mr.Chirs Nguyen ",
       avatar: "/logo/svg/avatar6.svg",
-      position: "Financial Advisor",
+      position: "CTO",
       company: "",
       highlights: [
-        "15+ years in fintech and crypto finance.",
-        "Ex-Director of Top3 Korean exchange."
+        "Former software engineer at Google",
+        "Proficient in more than 10 programming languages",
+        "Former Co-Founder of many web3 projects"
+      ]
+    },
+    {
+      name: "Mr.PDucky",
+      avatar: "/logo/svg/avatar7.svg",
+      position: "Project Manager",
+      company: "",
+      highlights: [
+        "Participated in more than 25 projects",
+        "Proficient in overall project design",
+        "Expert in financial modeling and web3 tokenomics"
+      ]
+    },
+    {
+      name: "Ms.AKai Lee ",
+      avatar: "/logo/svg/avatar8.svg",
+      position: "Head of Partnership",
+      company: "",
+      highlights: [
+        "Portfolio management and business development",
+        "Fluent in English, Chinese, Vietnamese",
+        "Building global relationships in China, Singapore, Europe"
+      ]
+    },
+    {
+      name: "Mr.Lian Lee",
+      avatar: "/logo/svg/avatar9.svg",
+      position: "Data Analyst",
+      company: "",
+      highlights: [
+        "Crypto & Data Nerd",
+        "Proficient in data analysis and on-chain analysis skills",
+        "Multiple Hackathon award winner"
       ]
     }
   ];
@@ -135,9 +137,9 @@ export default function OperationSplitView() {
       {isMobile ? (
       <Box sx={{ width: "100%", mx: "auto", mt: 4 }}>
         
-        {advisors.map((a, idx) => (
+        {operations.map((a, idx) => (
           <Box key={a.name} sx={{ mb: 4, ml: -10 }}>
-            <AdvisorDetailPanel advisor={a} direction={0} />
+            <PersonDetailPanel Person={a} direction={0} />
           </Box>
         ))}
       </Box>
@@ -158,7 +160,7 @@ export default function OperationSplitView() {
                 position: "relative"
                 }}
             >
-                {advisors.map((a, idx) =>
+                {operations.map((a, idx) =>
                 <AdvisorListCard
                     key={a.name}
                     data={a}
@@ -181,7 +183,7 @@ export default function OperationSplitView() {
               height: 380,
             }}
           >
-            {advisors.map((a, idx) => (
+            {operations.map((a, idx) => (
               <m.div
                 key={a.name}
                 initial={{ left: 350 + idx * 40, top: 90 }} // xuất phát tại vị trí cũ giữa hàng ngang
@@ -211,7 +213,7 @@ export default function OperationSplitView() {
         {/* Panel chi tiết */}
         {currentIdx !== null && (
           <Box>
-            <AdvisorDetailPanel advisor={advisors[currentIdx]} direction={0} />
+            <PersonDetailPanel Person={operations[currentIdx]} direction={0} />
           </Box>
         )}
       </Box>

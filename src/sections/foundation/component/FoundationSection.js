@@ -29,13 +29,13 @@ export default function SRFoundationTitle() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // Có thể thêm maxWidth ở đây nếu muốn mobile không bị tràn
+        
       }}
     >
       <Box sx={{
         display: 'flex',
         alignItems: 'center',
-        gap: { xs: 1, md: 6 } // mobile gap nhỏ lại, desktop giữ nguyên
+        gap: { xs: 1, md: 6 } 
       }}>
         {/* Logo animate */}
         <Box
@@ -43,7 +43,7 @@ export default function SRFoundationTitle() {
           src="/logo/svg/Group.svg"
           alt="SR Logo"
           sx={{
-            height: { xs: 36, md: "100%" }, // mobile nhỏ lại
+            height: { xs: 36, md: "100%" }, 
             width: 'auto',
             minWidth: 28,
           }}
@@ -56,7 +56,7 @@ export default function SRFoundationTitle() {
         <Box sx={{
           display: 'flex',
           alignItems: 'center',
-          gap: { xs: 0.5, md: 1 }, // mobile gap nhỏ lại
+          gap: { xs: 0.5, md: 1 }, 
         }}>
           {title.split('').map((ch, idx) =>
             CHAR_TO_SVG[ch] ? (
@@ -66,7 +66,7 @@ export default function SRFoundationTitle() {
                 alt={ch}
                 key={idx}
                 sx={{
-                  height: { xs: 24, md: "100%" }, // mobile nhỏ lại
+                  height: { xs: 24, md: "100%" }, 
                   width: 'auto',
                   ...(ch === 'R' ? { mr: { xs: 1, md: 2 } } : {}),
                   minWidth: 12,

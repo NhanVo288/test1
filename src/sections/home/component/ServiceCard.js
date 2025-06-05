@@ -1,5 +1,6 @@
 import { Box, Typography, Button, IconButton } from '@mui/material';
 import { m, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function ServiceCard({
@@ -252,6 +253,8 @@ const textVariants = {
         {/* Button + Icons giữ nguyên */}
         <Button
           variant="contained"
+          component={Link}
+          to="/foudation"
           sx={{
             background: '#181818',
             color: '#fff',

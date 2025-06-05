@@ -11,7 +11,7 @@ export default function SloganBanner() {
     <Box
       sx={{
         width: "auto",
-        minHeight: { xs: "60vh", md: "100vh" }, // mobile thấp hơn
+        minHeight: { xs: "60vh", md: "85vh " }, // mobile thấp hơn
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

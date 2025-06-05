@@ -8,6 +8,7 @@ function MainLayout({ children }) {
     <>
     <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100%" }}>
       <Navbar />
+      <Box sx={{ height: { xs: 56, sm: 64, md: 88 } }} /> 
       <FullscreenBlobBackground />
       <Box component="main" sx={{ position: 'relative', zIndex: 1 }}>
         {children}
